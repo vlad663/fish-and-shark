@@ -3,7 +3,7 @@ class  Fish():
     def __init__(self,parent=None):
         self.life=1
         self.x = 10#random.randrange(0,18,1)
-        self.y = 0#random.randrange(0,15,1)
+        self.y = 10#random.randrange(0,15,1)
         self.position = [self.x,self.y]
         self.old_position=[None,None]
         self.step=0
@@ -17,31 +17,38 @@ class  Fish():
             #print('очистил',self.old_position[0])
             #print('очистил',self.old_position[1])
             
-        if self.h==1 and self.position[0]>0:
+        if self.h==1 and self.position[0]>=0:
             self.position[0] = self.position[0]+(-1)
     
     
-        elif self.h==2 and self.position[1]<20:
+        elif self.h==2 and self.position[1]<=21:
             self.position[1] = self.position[1]+(1)
             
-        elif self.h==3 and self.position[0]<18:
+        elif self.h==3 and self.position[0]<=17:
             self.position[0] = self.position[0]+(1)
 
-        elif self.h==4 and self.position[1]>0:
+        elif self.h==4 and self.position[1]>=0:
             self.position[1] = self.position[1]+(-1)
 
-        self.step+=1
         
-        if self.h==1 and self.position[0]==0:
+        
+        if self.h==1 and self.position[0]<0:
             self.position[0]=17
-        elif self.h ==3 and self.position[0]==18:
+        if self.h ==3 and self.position[0]==18:
             self.position[0]=0
         
-        if self.h == 4 and self.position[1]==0:
+        if self.h == 4 and self.position[1]==-1:
             self.position[1]=20
-        elif self.h == 2 and self.position[1]==20:
+            
+        if self.h == 2 and self.position[1]==22:
             self.position[1]=0
-
+        
+    def stop(self):
+        self.x=self.x
+        self.y=self.y
+        print(self.x,self.y)
     def __del__(self):
         class_name = self.__class__.__name__  
         print('{} уничтожен'.format(class_name))
+
+
